@@ -39,16 +39,16 @@ float box(vec3 ray, vec3 pos, vec3 size)
     return max(max(ray.x,ray.y),ray.z);
 }
 
+//vector function that animates the scene around a specific point
 vec3 Spherize(vec3 pos)
 {
-    vec3 result = vec3(0.,0.,0.);
-    result.x = atan(normalize(pos.xy)).y * 10.0;
-    result.y = atan(normalize(pos.zx)).y * 10.0;
-    result.z = (2.*length(pos))-15.;
+    //vec3 result = vec3(0.,0.,0.);
+    vec3 result=vec3(abs(atan(pos.z,pos.x))*10.-5., (10.-length(pos)), abs(atan(length(pos.xz),pos.y))*10.-16.);
     result.xy += 10.;
     return result;
 }
 
+//Secondary function that animates the geometry to a specific time function
 vec3 FractalSpace(vec3 pos)
 {
     pos *= 0.1;
@@ -69,7 +69,7 @@ float map(vec3 pos)
 {
     float rayDist = 0.;
     
-    //pos = Spherize(pos);
+    pos = Spherize(pos);
     
     pos = FractalSpace(pos);
     pos += .05;
