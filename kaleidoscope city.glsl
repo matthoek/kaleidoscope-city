@@ -237,12 +237,11 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
     vec2 uv = (fragCoord-iResolution.xy*0.5)/iResolution.yy;
 
-    
+    //Normalized Ray Marching function
     vec4 pos = GetSampleColor(uv);
     float height = fog;
     //vec4 posX = GetSampleColor(vec2(uv.x+dFdx(uv).x*0.8,uv.y));
     //vec4 posY = GetSampleColor(vec2(uv.x,uv.y+dFdy(uv).y*0.8));
-    
     //vec3 normal = normalize(cross(normalize(posY.xyz-pos.xyz),normalize(posX.xyz-pos.xyz)));
     vec3 normal = GetNormal(pos.xyz,dist);
     
